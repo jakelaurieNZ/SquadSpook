@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">SquadSpook</string>
+    <string name="retry">Retry</string>
+
+    <!--ServerItem-->
+    <string name="server_map_players_format">%1$d/%2$d</string>
+
+    <!--Error-->
+    <string name="unknown_error">Unknown error</string>
+
+    <!--Menu-->
+    <string name="menu_title_filter">Filter</string>
+    <string name="licenses">Licenses</string>
+
+    <!--Filter-->
+    <string name="filter_empty_servers">Filter empty servers</string>
+</resources>

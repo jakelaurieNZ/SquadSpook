@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'com.google.gms.oss.licenses.plugin'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        multiDexEnabled true
+        applicationId "com.jakelaurie.squadspook"
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "SERVER_URL", "\"https://api.battlemetrics.com/\""
+            buildConfigField "String", "PLAYERS", "\"https://battlemetrics.com/\""
+        }
+
+        debug {
+            applicationIdSuffix ".dev"
+            debuggable true
+            buildConfigField "String", "SERVER_URL", "\"https://api.battlemetrics.com/\""
+            buildConfigField "String", "PLAYERS_URL", "\"https://battlemetrics.com/api/\""
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //Support
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support.constraint:constraint-layout:${rootProject.ext.constraintLayoutVersion}"
+    implementation "com.android.support:recyclerview-v7:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support:design:${rootProject.ext.supportLibVersion}"
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.moshiConverterVersion}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.rxJavaAdapterVersion}"
+    //Dagger2
+    implementation "com.google.dagger:dagger-android:${rootProject.ext.dagger2Version}"
+    kapt "com.google.dagger:dagger-compiler:${rootProject.ext.dagger2Version}"
+    kapt "com.google.dagger:dagger-android-processor:${rootProject.ext.dagger2Version}"
+    //Room
+    implementation "android.arch.persistence.room:runtime:${rootProject.ext.roomVersion}"
+    implementation "android.arch.persistence.room:rxjava2:${rootProject.ext.roomVersion}"
+    kapt "android.arch.persistence.room:compiler:${rootProject.ext.roomVersion}"
+    //Lifecycle
+    implementation "android.arch.lifecycle:extensions:${rootProject.ext.archVersion}"
+    kapt "android.arch.lifecycle:compiler:${rootProject.ext.archVersion}"
+    //RXLifecycle
+    implementation "android.arch.lifecycle:reactivestreams:${rootProject.ext.archVersion}"
+    //RxJava RxAndroid
+    implementation "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxJava2Version}"
+    implementation "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxAndroidVersion}"
+    //Glide
+    implementation "com.github.bumptech.glide:glide:${rootProject.ext.glideVersion}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${rootProject.ext.glideVersion}"
+    //Misc
+    implementation "com.github.urizev:android-vector-flags:${rootProject.ext.vectorFlagsVersion}"
+    implementation "com.google.android.gms:play-services-oss-licenses:${rootProject.ext.ossLicensesVersion}"
+
+
+    //Test
+    testImplementation "junit:junit:${rootProject.ext.junitVersion}"
+    androidTestImplementation "com.android.support.test:runner:${rootProject.ext.testRunnerVersion}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:${rootProject.ext.testEspressoVersion}"
+}
