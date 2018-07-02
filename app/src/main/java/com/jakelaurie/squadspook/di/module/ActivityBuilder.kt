@@ -6,11 +6,10 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-abstract class BuildersModule {
-
-    @ContributesAndroidInjector
+abstract class ActivityBuilder {
+    @ContributesAndroidInjector(modules = [ServerListActivityModule::class])
     abstract fun contributeServerListActivity(): ServerListActivity
 
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [ServerListActivityModule::class])
     abstract fun contributeServerDetailActivity(): ServerDetailActivity
 }

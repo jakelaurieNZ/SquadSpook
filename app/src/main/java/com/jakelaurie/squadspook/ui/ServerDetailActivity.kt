@@ -44,8 +44,6 @@ class ServerDetailActivity: BaseActivity() {
         serverName = extras.getString(keyServerName, "-")
         serverId = extras.getString(keyServerId)
 
-        AndroidInjection.inject(this)
-
         setupUI()
 
         playerListSwipeRefresh.setOnRefreshListener {

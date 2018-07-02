@@ -18,8 +18,9 @@ class SquadApplication: Application(), HasActivityInjector {
         super.onCreate()
 
         DaggerAppComponent.builder()
-                .appModule(AppModule(this))
-                .networkModule(NetworkModule(BuildConfig.SERVER_URL, BuildConfig.PLAYERS_URL))
+                .application(this)
+                .serverApiUrl(BuildConfig.SERVER_URL)
+                .playerApiUrl(BuildConfig.PLAYERS_URL)
                 .build()
                 .inject(this)
     }
