@@ -2,6 +2,7 @@ package com.jakelaurie.squadspook.di.module
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.jakelaurie.squadspook.annotations.OpenForTesting
 import com.jakelaurie.squadspook.data.network.PlayerApi
 import com.jakelaurie.squadspook.data.network.ServerApi
 import dagger.Module
@@ -13,6 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
 import javax.inject.Singleton
 
+@OpenForTesting
 @Module
 class NetworkModule {
     @Provides

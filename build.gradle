@@ -47,6 +47,7 @@ ext {
     //testImpl
     testRunnerVersion =       "1.0.1"
     testEspressoVersion =     "3.0.1"
+    testMokitoVersion =       "2.11.0"
 }
 
 task clean(type: Delete) {

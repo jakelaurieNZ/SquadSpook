@@ -1,3 +1,14 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
+    }
+}
+
+
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
@@ -6,7 +17,17 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'kotlin-allopen'
+
 apply plugin: 'com.google.gms.oss.licenses.plugin'
+
+kapt {
+    correctErrorTypes = true
+}
+
+allOpen {
+    annotation("com.jakelaurie.squadspook.annotations.OpenClass")
+}
 
 android {
     compileSdkVersion 27
@@ -28,6 +49,13 @@ android {
         }
 
         debug {
+            applicationIdSuffix ".dev"
+            debuggable true
+            buildConfigField "String", "SERVER_URL", "\"https://api.battlemetrics.com/\""
+            buildConfigField "String", "PLAYERS_URL", "\"https://battlemetrics.com/api/\""
+        }
+
+        mockito {
             applicationIdSuffix ".dev"
             debuggable true
             buildConfigField "String", "SERVER_URL", "\"https://api.battlemetrics.com/\""
@@ -73,9 +101,10 @@ dependencies {
     implementation "com.github.urizev:android-vector-flags:${rootProject.ext.vectorFlagsVersion}"
     implementation "com.google.android.gms:play-services-oss-licenses:${rootProject.ext.ossLicensesVersion}"
 
-
     //Test
     testImplementation "junit:junit:${rootProject.ext.junitVersion}"
     androidTestImplementation "com.android.support.test:runner:${rootProject.ext.testRunnerVersion}"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:${rootProject.ext.testEspressoVersion}"
+
+    testImplementation "org.mockito:mockito-inline:${rootProject.ext.testMokitoVersion}"
 }

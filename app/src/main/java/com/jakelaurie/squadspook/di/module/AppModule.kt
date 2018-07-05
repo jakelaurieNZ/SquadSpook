@@ -6,6 +6,7 @@ import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.ContentValues
 import com.jakelaurie.squadspook.SquadApplication
+import com.jakelaurie.squadspook.annotations.OpenForTesting
 import com.jakelaurie.squadspook.data.database.Database
 import com.jakelaurie.squadspook.data.database.PlayersDao
 import com.jakelaurie.squadspook.data.database.ServersDao
@@ -18,7 +19,9 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Module class AppModule {
+@OpenForTesting
+@Module
+class AppModule {
     @Inject
     internal lateinit var application: SquadApplication
 
