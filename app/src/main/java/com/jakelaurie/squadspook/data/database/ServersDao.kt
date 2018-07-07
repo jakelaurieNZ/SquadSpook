@@ -12,6 +12,9 @@ import io.reactivex.Single
 
 @Dao
 interface ServersDao {
+    @Query("SELECT * FROM server where id LIKE :serverId")
+    fun queryServer(serverId: String): Flowable<List<Server>>
+
     @Query("SELECT * FROM server WHERE players > :minPlayerCount")
     fun queryServers(minPlayerCount: Int): Flowable<List<Server>>
 

@@ -44,18 +44,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "SERVER_URL", "\"https://api.battlemetrics.com/\""
-            buildConfigField "String", "PLAYERS", "\"https://battlemetrics.com/\""
+
         }
 
         debug {
-            applicationIdSuffix ".dev"
-            debuggable true
-            buildConfigField "String", "SERVER_URL", "\"https://api.battlemetrics.com/\""
-            buildConfigField "String", "PLAYERS_URL", "\"https://battlemetrics.com/api/\""
-        }
-
-        mockito {
             applicationIdSuffix ".dev"
             debuggable true
             buildConfigField "String", "SERVER_URL", "\"https://api.battlemetrics.com/\""
@@ -105,6 +97,13 @@ dependencies {
     testImplementation "junit:junit:${rootProject.ext.junitVersion}"
     androidTestImplementation "com.android.support.test:runner:${rootProject.ext.testRunnerVersion}"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:${rootProject.ext.testEspressoVersion}"
+
+    androidTestImplementation "android.arch.core:core-testing:${rootProject.ext.archVersion}"
+    testImplementation("android.arch.core:core-testing:${rootProject.ext.archVersion}", {
+        exclude group: 'com.android.support', module: 'support-compat'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'support-core-utils'
+    })
 
     testImplementation "org.mockito:mockito-inline:${rootProject.ext.testMokitoVersion}"
 }
