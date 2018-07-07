@@ -39,6 +39,7 @@ ext {
     rxJavaAdapterVersion =    "2.3.0"
     rxAndroidVersion =        "2.0.2"
     rxJava2Version =          "2.1.0"
+    rxKotlinVersion =         "2.2.0"
     vectorFlagsVersion =      "0.2"
     glideVersion =            "4.7.1"
     ossLicensesVersion =      "15.0.1"

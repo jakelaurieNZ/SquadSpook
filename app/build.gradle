@@ -83,9 +83,10 @@ dependencies {
     kapt "android.arch.lifecycle:compiler:${rootProject.ext.archVersion}"
     //RXLifecycle
     implementation "android.arch.lifecycle:reactivestreams:${rootProject.ext.archVersion}"
-    //RxJava RxAndroid
+    //RxJava, RXKotlin, RxAndroid
     implementation "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxJava2Version}"
     implementation "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxAndroidVersion}"
+    implementation "io.reactivex.rxjava2:rxkotlin:${rootProject.ext.rxKotlinVersion}"
     //Glide
     implementation "com.github.bumptech.glide:glide:${rootProject.ext.glideVersion}"
     annotationProcessor "com.github.bumptech.glide:compiler:${rootProject.ext.glideVersion}"
