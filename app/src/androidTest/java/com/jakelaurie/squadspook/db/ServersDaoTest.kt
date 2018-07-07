@@ -32,8 +32,8 @@ class ServersDaoTest: DbTest() {
         Assert.assertEquals(servers.size, 1)
 
         servers.first().run {
-            assert(id == serverId)
-            assert(name.isNotEmpty())
+            Assert.assertEquals(id, serverId)
+            Assert.assertTrue(name.isEmpty())
         }
     }
 }
