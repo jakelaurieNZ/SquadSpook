@@ -11,7 +11,8 @@ import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class ServerListViewModel @Inject constructor(): ViewModel() {
+class ServerListViewModel @Inject constructor(private val serverRepository: ServerRepository):
+        ViewModel() {
     var serversResult: MutableLiveData<List<Server>> = MutableLiveData()
     var serversError: MutableLiveData<String> = MutableLiveData()
     var serversFilter: MutableLiveData<ServersFilter> = MutableLiveData()
@@ -19,8 +20,6 @@ class ServerListViewModel @Inject constructor(): ViewModel() {
     private var databaseObservable: DisposableObserver<List<Server>>? = null
     private var networkObservable: DisposableObserver<List<Server>>? = null
     private var filterObservable: DisposableObserver<ServersFilter>? = null
-
-    @Inject lateinit var serverRepository: ServerRepository
 
     fun queryDatabase(filter: ServersFilter) {
         databaseObservable?.let{
@@ -43,7 +42,7 @@ class ServerListViewModel @Inject constructor(): ViewModel() {
         }
 
         serverRepository.fromDatabase(filter)
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(databaseObservable)
 
@@ -78,7 +77,9 @@ class ServerListViewModel @Inject constructor(): ViewModel() {
         val networkObservable = object: DisposableObserver<List<Server>>() {
             override fun onComplete() {}
             override fun onNext(t: List<Server>) {}
-            override fun onError(e: Throwable) {}
+            override fun onError(e: Throwable) {
+                serversError.postValue("Unable to fetch servers")
+            }
         }
 
         serverRepository.fromNetwork()
